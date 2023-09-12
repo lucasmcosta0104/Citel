@@ -99,4 +99,8 @@ input:focus:invalid {
     box-shadow: none;
 }
 
+.left {
+    text-align: end;
+}
+
 

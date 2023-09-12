@@ -271,5 +271,4 @@ C:\Users\maahc\OneDrive\Área de Trabalho\Lucas\Cintel\Citel\bin\Debug\net7.0\ru
 C:\Users\maahc\OneDrive\Área de Trabalho\Lucas\Cintel\Citel\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
 C:\Users\maahc\OneDrive\Área de Trabalho\Lucas\Cintel\Citel\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\maahc\OneDrive\Área de Trabalho\Lucas\Cintel\Citel\bin\Debug\net7.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
-C:\Users\maahc\OneDrive\Área de Trabalho\Lucas\Cintel\Citel\bin\Debug\net7.0\package-lock.json
 C:\Users\maahc\OneDrive\Área de Trabalho\Lucas\Cintel\Citel\bin\Debug\net7.0\package.json
