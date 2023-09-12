@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Citel.Application.Models.Categoria>
+
+@{
+    ViewData["Title"] = "Categorias";
+}
+
+<h1>Categorias</h1>
+
+<p>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCadastroCategoria">
+        <i class="fa-solid fa-plus"></i>
+    </button>
+</p>
+<table id="Categoria" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" onclick="editarCategoria(@item.Id)" data-target="#modalCadastroCategoria">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" onclick="visualizarCategoria(@item.Id)" data-target="#modalCadastroCategoria">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" onclick="abrirModal(@item.Id)">
+                        <i class="fa-solid fa-delete-left"></i>
+                    </button>
+                    <a class="btn btn-secondary" asp-area="" asp-controller="Produto" asp-action="Index" asp-route-id="@item.Id"><i class="fa-solid fa-list"></i></a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+
+<div class="modal fade" id="modalCadastroCategoria" tabindex="-1" role="dialog" aria-labelledby="categoriaModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="categoriaModalLabel">Inclusão de Categoria</h5>
+                <button type="button" onclick="fecharModalCategoria()" class="close" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formCadastroCategoria">
+                    <div class="form-group">
+                        <label for="nome">Nome da Categoria:</label>
+                        <input type="text" class="form-control" id="nome" name="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descricao">Descrição:</label>
+                        <textarea class="form-control" id="descricao" name="descricao" required></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" onclick="fecharModalCategoria()" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-primary" id="btnSalvarCategoria">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="modal">
+    <div id="modal-janela">
+        <p>Tem certeza de que deseja excluir? Todos os produtos dessa categoria serão excluidos.</p>
+        <button class="btn btn-danger" onclick="removerCategoria()">Sim</button>
+        <button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>
+    </div>
+</div>
+
+

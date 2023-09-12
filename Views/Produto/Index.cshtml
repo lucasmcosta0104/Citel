@@ -1,0 +1,106 @@
+﻿@model IEnumerable<Citel.Models.ProdutoViewModel>
+
+@{
+    ViewData["Title"] = "Produtos";
+}
+
+<h1>Produtos</h1>
+
+<p>
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCadastroProduto">
+        <i class="fa-solid fa-plus"></i>
+    </button>
+</p>
+<table id="Produto" class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Preco)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Categoria)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Categoria)
+            </td>
+            <td>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" onclick="editarProduto(@item.Id)" data-target="#modalCadastroProduto">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-secondary" data-toggle="modal" onclick="visualizarProduto(@item.Id)" data-target="#modalCadastroProduto">
+                        <i class="fa-solid fa-eye"></i>
+                    </button>
+                    <button type="button" class="btn btn-danger" data-toggle="modal" onclick="abrirModal(@item.Id)">
+                        <i class="fa-solid fa-delete-left"></i>
+                    </button>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<div class="modal fade" id="modalCadastroProduto" tabindex="-1" role="dialog" aria-labelledby="produtoModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="produtoModalLabel">Cadastro de Produto</h5>
+                <button type="button" class="close" data-dismiss="modal" onclick="fecharModalProduto()" aria-label="Fechar">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="formCadastroProduto">
+                    <div class="form-group">
+                        <label for="nome">Nome do Produto:</label>
+                        <input type="text" class="form-control" id="nome" name="nome" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="descricao">Descrição:</label>
+                        <textarea class="form-control" id="descricao" name="descricao" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="preco">Preço:</label>
+                        <input type="number" class="form-control" id="preco" name="preco" min="0.01" step="0.01" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="preco">Categoria:</label>
+                        <select type="number" id="categoria" name="categoria" class="form-control" asp-items="ViewBag.CategoriaId" required></select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" onclick="fecharModalProduto()">Fechar</button>
+                <button type="button" class="btn btn-primary" id="btnSalvarProduto">Salvar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="modal">
+    <div id="modal-janela">
+        <p>Tem certeza de que deseja excluir?</p>
+        <button class="btn btn-danger" onclick="removerProduto()">Sim</button>
+        <button class="btn btn-secondary" onclick="fecharModal()">Cancelar</button>
+    </div>
+</div>
